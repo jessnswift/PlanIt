@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import Register from "./Register.js"
 import "./login.css"
 
 export default class Login extends Component {
@@ -51,19 +52,19 @@ export default class Login extends Component {
 
     render() {
         return (
-            <form className="form-signin" onSubmit={this.handleLogin}>
-                <h1 className="title">PlanIt</h1>
-                <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                <input onChange={this.handleFieldChange} type="email" id="email" className="form-control" placeholder="Email address" required="" autoFocus="" />
-                <label htmlFor="inputPassword" className="sr-only">Password</label>
-                <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
-                <button className="btn btn-lg btn-primary btn-success btn-block" type="submit">Sign in</button>
-                <button className="btn btn-lg btn-primary btn-success btn-block" type="register">Register</button>
-                <p className="mt-5 mb-3 text-muted">©2018</p>
-            </form>
-
-
-
+            <div>
+                <form className="form-signin" onSubmit={this.handleLogin}>
+                    <h1 className="title">PlanIt</h1>
+                    <label htmlFor="inputEmail" className="sr-only">Email address</label>
+                    <input onChange={this.handleFieldChange} type="email" id="email" className="form-control" placeholder="Email address" required="" autoFocus="" />
+                    <label htmlFor="inputPassword" className="sr-only">Password</label>
+                    <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
+                    <button className="btn btn-lg btn-primary btn-success btn-block" type="submit">Sign in</button>
+                </form>
+                <div>
+                    <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="register">Register Here</button>
+                </div>
+            </div>
         )
     }
 }

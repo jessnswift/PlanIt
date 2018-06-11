@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Login from './auth/Login';
-import Home from './Home'
+import Home from './Home';
+import Register from './auth/Register'
 
 class App extends Component {
 
   // Set initial state
   state = {
     currentView: "login",
-    activeUser: localStorage.getItem("activeUser")
+    activeUser: localStorage.getItem("activeUser"),
+    register: false
   }
 
   // Function to update local storage and set activeUser state
@@ -25,7 +27,8 @@ class App extends Component {
     })
   }
 
-  // View switcher -> passed to NavBar and Login
+
+
   // Argument can be an event (via NavBar) or a string (via Login)
   showView = function (e) {
     let view = null
@@ -41,13 +44,19 @@ class App extends Component {
       view = e
     }
 
-    // If user clicked logout in nav, empty local storage and update activeUser state
+    // If user clicked logout, empty local storage and update activeUser state
     if (view === "logout") {
       this.setActiveUser(null)
     }
 
     // if (view === "profile") {
     if (view === "logout") {
+      this.setActiveUser(null)
+    }
+
+    // if (view === "profile") {
+    if (view === "register") {
+      this.setState({ register: true })
       this.setActiveUser(null)
     }
 
@@ -59,8 +68,12 @@ class App extends Component {
   }.bind(this)
 
   View = () => {
-    if (this.state.activeUser === null) {
+    if (this.state.activeUser === null && this.state.register === false) {
       return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
+    }
+    if (this.state.register === true && this.state.activeUser === null) {
+      return <Register showView={this.showView} setActiveUser={this.setActiveUser} />
+
     } else {
       switch (this.state.currentView) {
         case "logout":
