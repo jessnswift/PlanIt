@@ -1,6 +1,7 @@
 import React, { Component } from "react"
-import Login from './Login'
 
+
+const swal = window.swal;
 export default class Register extends Component {
 
     state={
@@ -29,7 +30,7 @@ export default class Register extends Component {
 
         // Set local storage with newly created user's id and show home view
         .then(newUser => {
-            alert("Welcome to PlanIt!")
+            swal("Welcome to PlanIt!", "", "success")
         })
     }.bind(this)
 

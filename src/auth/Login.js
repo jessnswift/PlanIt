@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Register from "./Register.js"
 import "./login.css"
 
+const swal = window.swal;
 export default class Login extends Component {
 
     // Set initial state
@@ -41,11 +42,11 @@ export default class Login extends Component {
                         this.props.setActiveUser(user[0].id)
                         this.props.showView("home")
                     } else {
-                        alert("Incorrect password!")
+                        swal("Oops!", "Incorrect login info, please try again!", "error")
                     }
                     // User doesn't exist
                 } else {
-                    alert("This user does not exist, feel free to sign up!")
+                    swal("Oops!", "This user does not exist, feel free to sign up!", "error")
                 }
             })
     }.bind(this)
@@ -61,7 +62,7 @@ export default class Login extends Component {
                     <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
                     <button className="btn btn-lg btn-primary btn-success btn-block" type="submit">Sign in</button>
                 </form>
-                <div className="container">
+                <div className="form-register">
                     <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="register">Register Here</button>
                 </div>
             </div>
