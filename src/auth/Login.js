@@ -36,8 +36,8 @@ export default class Login extends Component {
             .then(user => {
                 // User exists. Set local storage, and show home view
                 if (user.length) {
-                    console.log("test")
                     if (user[0].password === this.state.password) {
+                        debugger
                         this.props.setActiveUser(user[0].id)
                         this.props.showView("home")
                     } else {
@@ -52,7 +52,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <form className="form-signin" onSubmit={this.handleLogin}>
                     <h1 className="title">PlanIt</h1>
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
@@ -61,7 +61,7 @@ export default class Login extends Component {
                     <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
                     <button className="btn btn-lg btn-primary btn-success btn-block" type="submit">Sign in</button>
                 </form>
-                <div>
+                <div className="container">
                     <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="register">Register Here</button>
                 </div>
             </div>

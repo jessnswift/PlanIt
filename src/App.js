@@ -33,12 +33,13 @@ class App extends Component {
   showView = function (e) {
     let view = null
     let user = this.state.userProfile
+
     // Click event triggered switching view
     if (e.hasOwnProperty("target")) {
       view = e.target.id.split("__")[1]
-      if (e.target.id.split("__").length > 2) {
-        user = e.target.id.split("__")[2]
-      }
+      // if (e.target.id.split("__").length > 2) {
+      //   user = e.target.id.split("__")[2]
+      // }
       // View switch manually triggered by passing in string
     } else {
       view = e
@@ -50,9 +51,9 @@ class App extends Component {
     }
 
     // if (view === "profile") {
-    if (view === "logout") {
-      this.setActiveUser(null)
-    }
+    // if (view === "logout") {
+    //   this.setActiveUser(null)
+    // }
 
     // if (view === "profile") {
     if (view === "register") {
@@ -70,10 +71,8 @@ class App extends Component {
   View = () => {
     if (this.state.activeUser === null && this.state.register === false) {
       return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
-    }
-    if (this.state.register === true && this.state.activeUser === null) {
+    } else if (this.state.register === true && this.state.activeUser === null) {
       return <Register showView={this.showView} setActiveUser={this.setActiveUser} />
-
     } else {
       switch (this.state.currentView) {
         case "logout":

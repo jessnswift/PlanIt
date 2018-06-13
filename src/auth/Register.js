@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Login from './Login'
+
 export default class Register extends Component {
 
     state={
@@ -35,7 +36,6 @@ export default class Register extends Component {
     render() {
         return (
             <div>
-            <h1>Register</h1>
             <form className="form-signup" onSubmit={this.handleLogin}>
                 <h1 className="h3 mb-3 font-weight-normal">Register</h1>
                 <label htmlFor="inputEmail" className="sr-only">Email address</label>
