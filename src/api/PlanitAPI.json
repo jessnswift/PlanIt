@@ -41,15 +41,22 @@
       "lastName": "Hood",
       "email": "nathan@gmail.com",
       "password": "123"
+    },
+    {
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "password": null,
+      "id": 7
     }
   ],
   "budgets": [
-  {
-    "id": 1,
-    "type": "",
-    "budgetAmount": "",
-    "dateOfEvent": "",
-    "userId": ""
-  }
+    {
+      "id": 1,
+      "type": "",
+      "budgetAmount": "",
+      "dateOfEvent": "",
+      "userId": ""
+    }
   ]
 }

@@ -37,7 +37,6 @@ export default class Login extends Component {
                 // User exists. Set local storage, and show home view
                 if (user.length) {
                     if (user[0].password === this.state.password) {
-                        debugger
                         this.props.setActiveUser(user[0].id)
                         this.props.showView("home")
                     } else {
@@ -61,8 +60,8 @@ export default class Login extends Component {
                     <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
                     <button className="btn btn-lg btn-primary btn-success btn-block" type="submit">Sign in</button>
                 </form>
-                <div className="container">
-                    <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="register">Register Here</button>
+                <div className="form-register">
+                    <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="button">Register Here</button>
                 </div>
             </div>
         )

@@ -2,12 +2,12 @@
     width: 100%;
     max-width: 330px;
     padding: 15px;
-    margin: 120px auto;
+    margin: 120px auto 0 auto;
 }
 
 .form-register {
     width: 100%;
     max-width: 330px;
     padding: 15px;
-    margin: 120px auto;
+    margin: 0 auto 120px auto;
 }
