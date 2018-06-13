@@ -44,12 +44,12 @@
     }
   ],
   "budgets": [
-  {
-    "id": 1,
-    "type": "",
-    "budgetAmount": "",
-    "dateOfEvent": "",
-    "userId": ""
-  }
+    {
+      "id": 1,
+      "type": "",
+      "budgetAmount": "",
+      "dateOfEvent": "",
+      "userId": ""
+    }
   ]
 }
