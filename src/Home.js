@@ -6,11 +6,18 @@ export default class Home extends Component {
         this.props.logout();
     }
 
+    handleBudgetButton = function (e) {
+        e.preventDefault()
+        this.props.showView('budget');
+
+    }.bind(this)
+
+
     render() {
         return (
             <div>
                 <div>
-                <button onClick={this.handleLogout} className="btn btn-default">logout</button>
+                <button type="buttonon" onClick={this.handleLogout} className="btn btn-secondary">logout</button>
                 </div>
 
                 <form>
@@ -28,7 +35,7 @@ export default class Home extends Component {
                         <input type="text" className="form-control" id="dollarAmount" placeholder="Dolla Amount" />
                     </div>
                     <input id="date" type="date" />
-                    <button type="submit" className="btn btn-default">Submit</button>
+                    <button type="button" className="btn btn-default" onClick={this.handleBudgetButton}>Submit</button>
                 </form>
             </div>
         )

@@ -24,7 +24,8 @@ export default class Register extends Component {
 
         // Prevent the user from leaving blank fields
         if (!this.state.firstName || !this.state.lastName || !this.state.email || !this.state.password) {
-            alert("Please don't leave the fields blank.")
+            swal("", "Please don't leave blank fields.", "error")
+            return;
          }
          // Create user in API
          fetch("http://localhost:8088/users", {

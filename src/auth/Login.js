@@ -52,7 +52,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="loadingPageLogin">
                 <form className="form-signin" onSubmit={this.handleLogin}>
                     <h1 className="title">PlanIt</h1>
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
@@ -63,7 +63,6 @@ export default class Login extends Component {
                 </form>
                 <div className="form-register">
                     <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="button">Register Here</button>
-                    <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="register">Register Here</button>
                 </div>
             </div>
         )
