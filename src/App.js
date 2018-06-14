@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './auth/Login';
 import Home from './Home';
+import Budget from './Budget';
 import Register from './auth/Register'
 
 class App extends Component {
@@ -37,9 +38,7 @@ class App extends Component {
     // Click event triggered switching view
     if (e.hasOwnProperty("target")) {
       view = e.target.id.split("__")[1]
-      // if (e.target.id.split("__").length > 2) {
-      //   user = e.target.id.split("__")[2]
-      // }
+
       // View switch manually triggered by passing in string
     } else {
       view = e
@@ -49,11 +48,6 @@ class App extends Component {
     if (view === "logout") {
       this.setActiveUser(null)
     }
-
-    // if (view === "profile") {
-    // if (view === "logout") {
-    //   this.setActiveUser(null)
-    // }
 
     // if (view === "profile") {
     if (view === "register") {
@@ -77,16 +71,18 @@ class App extends Component {
       switch (this.state.currentView) {
         case "logout":
           return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
+        case "budget":
+          return <Budget showView={this.showView} setActiveUser={this.setActiveUser} />
         case "home":
         default:
-          return <Home activeUser={this.state.activeUser} logout={this.setActiveUser} />
+          return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
       }
     }
   }
 
   render() {
     return (
-      <article>
+      <article className="mainArticle">
         {this.View()}
       </article>
     );
