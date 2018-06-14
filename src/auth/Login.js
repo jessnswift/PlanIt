@@ -63,6 +63,10 @@ export default class Login extends Component {
                 </form>
                 <div className="form-register">
                     <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="button">Register Here</button>
+<<<<<<< HEAD
+=======
+                    <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="register">Register Here</button>
+>>>>>>> b5d47963b31ab73a367160721111bb2b105ed92b
                 </div>
             </div>
         )
