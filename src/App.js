@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './auth/Login';
 import Home from './Home';
-import Budget from './Budget';
+import Budget from './Budget/Budget';
 import Register from './auth/Register'
 
 class App extends Component {
@@ -72,7 +72,7 @@ class App extends Component {
         case "logout":
           return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
         case "budget":
-          return <Budget showView={this.showView} setActiveUser={this.setActiveUser} />
+          return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
         case "home":
         default:
           return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />

@@ -1,10 +1,6 @@
 import React, { Component } from "react"
 import Login from './Login'
 import "./register.css"
-<<<<<<< HEAD
-=======
-
->>>>>>> b5d47963b31ab73a367160721111bb2b105ed92b
 
 const swal = window.swal;
 export default class Register extends Component {
