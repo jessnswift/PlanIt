@@ -48,8 +48,13 @@
       "id": 1,
       "type": "",
       "budgetAmount": "",
-      "dateOfEvent": "",
       "userId": ""
+    },
+    {
+      "budgetName": "swift",
+      "value": "wedding",
+      "budgetAmount": "12,000",
+      "id": 2
     }
   ]
 }
