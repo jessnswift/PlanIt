@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Login from './auth/Login';
 import Home from './Home';
@@ -27,8 +26,6 @@ class App extends Component {
       activeUser: val
     })
   }
-
-
 
   // Argument can be an event (via NavBar) or a string (via Login)
   showView = function (e) {

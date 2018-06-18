@@ -10,20 +10,23 @@ export default class Budget extends Component {
             budgetAmount: 0
         }
     }
+    unique = 1;
 
     handleLogout = () => {
         this.props.logout();
     }
 
     componentDidMount() {
-        fetch(`http://localhost:8088/budgets`)
+            fetch(`http://localhost:8088/budgets?userId=${localStorage.getItem('activeUser')}`)
         .then(r => r.json())
         .then(budgets => {
-            var userBudgets = budgets.filter((budget) => {
-                return budget.userId == localStorage.getItem('activeUser');
-            })
-            var currentBudget = userBudgets[0]
+            if(budgets.length){
+    //         var userBudgets = budgets.filter((budget) => {
+    //             return budget.userId == localStorage.getItem('activeUser');
+    //         })
+            var currentBudget = budgets[0]
             this.setState({ budgetAmount: currentBudget.budgetAmount});
+        }
         })
     }
 
@@ -42,10 +45,10 @@ export default class Budget extends Component {
     render() {
         let cats = this.budgetPercentages.map(function (detailObj) {
             return (
-                <div>
+                <div key={this.unique++}>
                     <form>
                         <div className={"card"}>
-                            <div className={"card-body"}> {detailObj.categoryName}: {(this.state.budgetAmount * detailObj.percentage) / 100 }</div>
+                            <div className={"card-body"}> {detailObj.categoryName}: ${(this.state.budgetAmount * detailObj.percentage) / 100 }</div>
                         </div>
                     </form>
                 </div>

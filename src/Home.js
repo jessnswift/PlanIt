@@ -9,7 +9,7 @@ export default class Home extends Component {
         this.state = {
             budgetName: "",
             value: "",
-            budgetAmount: ""
+            budgetAmount: 0
         }
     }
 
@@ -45,9 +45,9 @@ export default class Home extends Component {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ userId: localStorage.getItem("activeUser"), budgetName: this.state.budgetName, value: this.state.value, budgetAmount: this.state.budgetAmount })
-        })
-        this.props.showView('budget');
+            body: JSON.stringify({ userId: +localStorage.getItem("activeUser"), budgetName: this.state.budgetName, value: this.state.value, budgetAmount: +this.state.budgetAmount })
+        }).then(() => this.props.showView('budget') );
+
     }.bind(this)
 
     render() {
@@ -58,8 +58,8 @@ export default class Home extends Component {
                 </div>
 
                 <form className="budgetForm" onSubmit={this.createNewBudget}>
-                    <div class="form-group">
-                        <label for="budgetName">Create A New Budget</label>
+                    <div className="form-group">
+                        <label htmlFor="budgetName">Create A New Budget</label>
                         <input onChange={this.handleFieldChange} type="text" className="form-control" id="budgetName" placeholder="Budget Me" />
                     </div>
                     <label>
@@ -71,7 +71,7 @@ export default class Home extends Component {
                             <option value="vacation">Vacation</option>
                         </select>
                     </label>
-                    <div class="form-group">
+                    <div className="form-group">
                         <input onChange={this.handleFieldChange} type="number" step="any" min="1.00" className="form-control" id="budgetAmount" placeholder="Total Budget Amount" />
                     </div>
                     <button type="submit" value="Submit" className="btn btn-secondary budgetButton">Submit</button>
