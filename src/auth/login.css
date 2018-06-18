@@ -6,27 +6,43 @@ body {
 
 .form-signin {
     width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: 120px auto 0 auto;
+    max-width: 200px;
+    padding: 5px;
+    margin: 2px auto;
+}
+
+.btn {
+
 }
 
 .form-register {
     width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto 120px auto;
-}
-
-.mainArticle, #root {
-    height: 100%;
+    max-width: 200px;
+    padding: 5px;
+    margin: 2px auto;
 }
 
 .loadingPageLogin {
     position: absolute;
     width: 100%;
     background-repeat: no-repeat;
-    background-image: url("../Img/coffeedollar.jpg");
+    background-image: url("../Img/notebookpen.jpg");
     background-size: cover;
     height: 100%;
+}
+
+.copyRight {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    /* font-size: 18px; */
+}
+
+.swal-button, .btn-outline {
+    opacity: 0.6;
+    border: 2px solid #de9391;
+}
+
+.form-control {
+    opacity: 0.9;
 }

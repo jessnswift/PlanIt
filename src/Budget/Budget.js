@@ -4,8 +4,27 @@ const swal = window.swal;
 
 export default class Budget extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            budgetAmount: 0
+        }
+    }
+
     handleLogout = () => {
         this.props.logout();
+    }
+
+    componentDidMount() {
+        fetch(`http://localhost:8088/budgets`)
+        .then(r => r.json())
+        .then(budgets => {
+            var userBudgets = budgets.filter((budget) => {
+                return budget.userId == localStorage.getItem('activeUser');
+            })
+            var currentBudget = userBudgets[0]
+            this.setState({ budgetAmount: currentBudget.budgetAmount});
+        })
     }
 
     budgetPercentages = [
@@ -19,14 +38,14 @@ export default class Budget extends Component {
         { categoryName: 'mics', percentage: 5 }
     ]
 
+
     render() {
         let cats = this.budgetPercentages.map(function (detailObj) {
             return (
                 <div>
-
                     <form>
                         <div className={"card"}>
-                            <div className={"card-body"}> {detailObj.categoryName}: {detailObj.percentage}</div>
+                            <div className={"card-body"}> {detailObj.categoryName}: {(this.state.budgetAmount * detailObj.percentage) / 100 }</div>
                         </div>
                     </form>
                 </div>

@@ -39,6 +39,16 @@ export default class Login extends Component {
                 if (user.length) {
                     if (user[0].password === this.state.password) {
                         this.props.setActiveUser(user[0].id)
+                        fetch(`http://localhost:8088/budgets`)
+                            .then(r => r.json())
+                            .then(budgets => {
+                                var userBudgets = budgets.filter((budget) => {
+                                    return budget.userId == localStorage.getItem('activeUser');
+                                })
+                                if (userBudgets.length > 0) {
+                                    this.props.showView("budget")
+                                }
+                            })
                         this.props.showView("home")
                     } else {
                         swal("Oops!", "Incorrect login info, please try again!", "error")
@@ -60,11 +70,10 @@ export default class Login extends Component {
                     <input onChange={this.handleFieldChange} type="email" id="email" className="form-control" placeholder="Email address" required="" autoFocus="" />
                     <label htmlFor="inputPassword" className="sr-only">Password</label>
                     <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
-                    <button className="btn btn-lg btn-primary btn-success btn-block" type="submit">Sign in</button>
+                    <button className="btn-lg btn btn-outline btn-block form-signin" type="submit">Sign in</button>
                 </form>
-                <div className="form-register">
-                    <button className="btn btn-lg btn-primary btn-success btn-block" id="button__register" onClick={this.props.showView} type="button">Register Here</button>
-                </div>
+                    <button className="btn-lg btn btn-outline btn-block form-register" id="button__register" onClick={this.props.showView} type="button">Register Here</button>
+                    <p className="mt-5 mb-3 text-muted copyRight">© PlanIt 2018</p>
             </div>
         )
     }

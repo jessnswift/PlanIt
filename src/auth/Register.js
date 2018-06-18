@@ -55,7 +55,7 @@ export default class Register extends Component {
                 <input onChange={this.handleFieldChange} type="email" id="email" className="form-control" placeholder="Email address" required="" autoFocus="" />
                 <label htmlFor="inputPassword" className="sr-only">Password</label>
                 <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
-                <button className="btn btn-lg btn-primary btn-block" type="button" onClick={this.createUser}>Sign up!</button>
+                <button className="btn btn-lg btn btn-block" type="button" onClick={this.createUser}>Sign up!</button>
             </form>
             </div>
         )

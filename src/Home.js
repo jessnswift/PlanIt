@@ -45,7 +45,7 @@ export default class Home extends Component {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ budgetName: this.state.budgetName, value: this.state.value, budgetAmount: this.state.budgetAmount })
+            body: JSON.stringify({ userId: localStorage.getItem("activeUser"), budgetName: this.state.budgetName, value: this.state.value, budgetAmount: this.state.budgetAmount })
         })
         this.props.showView('budget');
     }.bind(this)
@@ -72,7 +72,7 @@ export default class Home extends Component {
                         </select>
                     </label>
                     <div class="form-group">
-                        <input onChange={this.handleFieldChange} type="text" className="form-control" id="budgetAmount" placeholder="Total Budget Amount" />
+                        <input onChange={this.handleFieldChange} type="number" step="any" min="1.00" className="form-control" id="budgetAmount" placeholder="Total Budget Amount" />
                     </div>
                     <button type="submit" value="Submit" className="btn btn-secondary budgetButton">Submit</button>
                 </form>
