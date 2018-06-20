@@ -54,7 +54,7 @@ export default class Home extends Component {
         return (
             <div>
                 <div>
-                    <button type="buttonon" onClick={this.handleLogout} className="btn btn-secondary">logout</button>
+                    <button type="buttonon" onClick={this.handleLogout} className="btn btn-outline">logout</button>
                 </div>
 
                 <form className="budgetForm" onSubmit={this.createNewBudget}>
@@ -74,7 +74,7 @@ export default class Home extends Component {
                     <div className="form-group">
                         <input onChange={this.handleFieldChange} type="number" step="any" min="1.00" className="form-control" id="budgetAmount" placeholder="Total Budget Amount" />
                     </div>
-                    <button type="submit" value="Submit" className="btn btn-secondary budgetButton">Submit</button>
+                    <button type="submit" value="Submit" className="btn btn-outline budgetButton">Submit</button>
                 </form>
             </div>
         )

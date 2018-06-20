@@ -32,7 +32,7 @@
       "id": 5,
       "firstName": "Katie",
       "lastName": "Hood",
-      "email": "Katie@gmail.com",
+      "email": "katie@gmail.com",
       "password": "123"
     },
     {
@@ -51,60 +51,11 @@
       "userId": 0
     },
     {
-      "userId": 6,
-      "budgetName": "hood",
+      "userId": 1,
+      "budgetName": "wedding 1",
       "value": "wedding",
       "budgetAmount": 10000,
       "id": 2
-    },
-    {
-      "userId": 2,
-      "budgetName": "wedding",
-      "value": "wedding",
-      "budgetAmount": 10000,
-      "id": 3
-    },
-    {
-      "userId": 2,
-      "budgetName": "Swift",
-      "value": "wedding",
-      "budgetAmount": 10000,
-      "id": 4
-    },
-    {
-      "userId": 5,
-      "budgetName": "Swift",
-      "value": "wedding",
-      "budgetAmount": 15000,
-      "id": 5
-    },
-    {
-      "userId": 5,
-      "budgetName": "Swift",
-      "value": "wedding",
-      "budgetAmount": 15000,
-      "id": 6
-    },
-    {
-      "userId": 3,
-      "budgetName": "Swift",
-      "value": "wedding",
-      "budgetAmount": 10000,
-      "id": 7
-    },
-    {
-      "userId": 3,
-      "budgetName": "Swift",
-      "value": "wedding",
-      "budgetAmount": 15000,
-      "id": 8
-    },
-    {
-      "userId": 4,
-      "budgetName": "Elton Get's Married",
-      "value": "wedding",
-      "budgetAmount": 10000,
-      "id": 9
     }
   ]
 }
