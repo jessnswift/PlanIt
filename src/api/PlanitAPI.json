@@ -56,6 +56,29 @@
       "value": "wedding",
       "budgetAmount": 10000,
       "id": 2
+    },
+    {
+      "userId": 2,
+      "budgetName": "Wedding Take 2",
+      "value": "wedding",
+      "budgetAmount": 30000,
+      "id": 3
+    },
+    {
+      "userId": 6,
+      "budgetName": "Wedding Take 2",
+      "value": "wedding",
+      "budgetAmount": 20000,
+      "id": 4
+    }
+  ],
+  "userBudgets": [
+    {
+      "id": 1,
+      "value": "",
+      "newCategoryName": "",
+      "amountToDistribute": "",
+      "userId": 0
     }
   ]
 }

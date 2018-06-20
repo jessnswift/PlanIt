@@ -11,6 +11,7 @@ class App extends Component {
   state = {
     currentView: "login",
     activeUser: localStorage.getItem("activeUser"),
+    // currentBudget: currentBudget.budgetAmount,
     register: false
   }
 

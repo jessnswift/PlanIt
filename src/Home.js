@@ -25,12 +25,6 @@ export default class Home extends Component {
         this.setState(stateToChange)
     }.bind(this)
 
-    // handleBudgetButton = function (e) {
-    //     e.preventDefault()
-
-
-    // }.bind(this)
-
     createNewBudget = function (e) {
         e.preventDefault()
 
