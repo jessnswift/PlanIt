@@ -73,7 +73,10 @@ class App extends Component {
           return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
         case "home":
         default:
-          return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
+        // REMOVE THIS LINE BEFORE COMMITTING
+        return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
+        // UNCOMMENT THIS LINE BEFORE COMMITING
+          // return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
       }
     }
   }

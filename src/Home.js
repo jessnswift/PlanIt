@@ -20,6 +20,7 @@ export default class Home extends Component {
 
     // Update state whenever an input field is edited
     handleFieldChange = function (evt) {
+        debugger;
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)

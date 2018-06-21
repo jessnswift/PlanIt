@@ -9,11 +9,12 @@ export default class Budget extends Component {
         super(props);
         this.state = {
             budgetAmount: 0,
+            budgetName: "",
             save: false,
             budgetPercentages: [
-                { categoryName: 'Reception', percentage: 45, isEditing: null },
-                { categoryName: 'Ceremony', percentage: 3, isEditing: null },
-                { categoryName: 'Planner', percentage: 8, isEditing: null },
+                { categoryName: 'Reception', percentage: 45, isEditing: true },
+                { categoryName: 'Ceremony', percentage: 3, isEditing: true },
+                { categoryName: 'Planner', percentage: 8, isEditing: true },
                 { categoryName: 'Attire', percentage: 12, isEditing: false },
                 { categoryName: 'Stationery', percentage: 3, isEditing: false },
                 { categoryName: 'Flowers/Decore', percentage: 12, isEditing: false },
@@ -34,19 +35,30 @@ export default class Budget extends Component {
             .then(budgets => {
                 if (budgets.length) {
                     var currentBudget = budgets[0]
-                    this.setState({ budgetAmount: currentBudget.budgetAmount });
+                    this.setState({ budgetAmount: currentBudget.budgetAmount,  budgetName: currentBudget.budgetName});
                 }
             })
     }
 
-    editCats = function (e) {
-        this.setState({isEditing: true})
-        console.log('TEST')
+    onCatEdit = function (e) {
+        this.setState({categoryText: e.target.value})
+        console.log(e.target.value)
+    }.bind(this)
+
+    editCat = function (detailObj) {
+        detailObj.isEditing = true;
+        this.setState({save: true})
     }
 
-    saveCats = function () {
-        this.setState({save: true})
-        console.log('TESTING2')
+    cancelEdit = function (detailObj) {
+        detailObj.isEditing = false;
+        this.setState({save: false})
+    }
+
+    saveEdit = function (detailObj) {
+        //
+        detailObj.isEditing = false;
+        this.setState({save: false})
     }
 
     formatCategoryText(categoryObj) {
@@ -54,30 +66,40 @@ export default class Budget extends Component {
     }
 
     render() {
-
+        let editClass = this.props.editMode ? 'is--show' : '';
+        let budgetAmountElement = (<h1>{this.state.budgetName} ${this.state.budgetAmount}</h1>)
         let cats = this.state.budgetPercentages.map(function (detailObj) {
+            // let stateToUse = {};
+            // stateToUse[detailObj.budgetName + "categoryText"] = this.formatCategoryText(detailObj)
+            // this.setState(stateToUse);
+
             if (detailObj.isEditing) {
+                // EDITING VERSION
+                // cancel edit button here
+                // save changes button here
                 return (
-                 <div key={this.unique++} >
-                    <h1>${this.state.budgetAmount}</h1>
+                    <div key={this.unique++} >
                         <form>
                             <div className={"card"} attribute={this.state.categoryName}>
                                 <div className={"card-body"} onChange={this.handleFieldChange}>
-                                    <input contentEditable={true} defaultValue={this.formatCategoryText(detailObj)} />
-                                    <button type="button" onClick={this.editCats.bind(this)} className="btn btn-outline">Edit</button>
-                                    <button type="button" onClick={this.saveCats.bind(this)} className="btn btn-outline">Save Changes</button>
+                                    <input id="categoryText" onChange={this.onCatEdit} contentEditable={true} defaultValue={this.formatCategoryText(detailObj)}/>
+                                    <button type="button" onClick={() => this.saveEdit(detailObj)} className="btn btn-outline">Save Edit</button>
+                                    <button type="button" onClick={() => this.cancelEdit(detailObj)} className="btn btn-outline">Cancel Edit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 )
             } else {
+                // NOT EDITING version
+                // add edit button in this version
                 return (
                     <div key={this.unique++} >
                         <form>
                             <div className={"card"} attribute={this.state.categoryName}>
                                 <div className={"card-body"} onChange={this.handleFieldChange}>
                                     {detailObj.categoryName}: ${(this.state.budgetAmount * detailObj.percentage) / 100}
+                                    <button type="button" onClick={() => this.editCat(detailObj)} className="btn btn-outline">Edit</button>
                                 </div>
                             </div>
                         </form>
@@ -87,6 +109,7 @@ export default class Budget extends Component {
         }.bind(this))
         return (
             <div className="container">
+                {budgetAmountElement}
                 {cats}
                 <button type="button" onClick={this.handleLogout.bind(this)} className="btn btn-outline">logout</button>
             </div>
