@@ -73,21 +73,18 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <button type="buttonon" onClick={this.handleLogout} className="btn btn-outline">logout</button>
-                </div>
 
                 <form className="budgetForm" onSubmit={this.createNewBudget}>
                     <div className="form-group">
                         <label htmlFor="budgetName">Create A New Budget</label>
-                        <input onChange={this.handleFieldChange} type="text" className="form-control" id="budgetName" placeholder="Budget Me" />
+                        <input onChange={this.handleFieldChange} type="text" className="form-control" id="budgetName" placeholder="Name Your Budget" />
                     </div>
                     <label>
                         Select Your Budget
                     <select onChange={this.handleFieldChange} className="form-control" defaultValue={this.state.value} id="value">
                             <option value="" disabled selected>Select a Budget</option>
                             <option value="wedding">Wedding</option>
-                            <option value="party">Partay</option>
+                            <option value="party">Party</option>
                             <option value="vacation">Vacation</option>
                         </select>
                     </label>
@@ -96,6 +93,11 @@ export default class Home extends Component {
                     </div>
                     <button type="submit" value="Submit" className="btn btn-outline budgetButton">Submit</button>
                 </form>
+                <br>
+                </br>
+                <div>
+                    <button type="buttonon" onClick={this.handleLogout} className="btn btn-outline">logout</button>
+                </div>
             </div>
         )
     }

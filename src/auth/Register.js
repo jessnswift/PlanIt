@@ -39,13 +39,14 @@ export default class Register extends Component {
         // Set local storage with newly created user's id and show home view
         .then(newUser => {
             swal("Welcome to PlanIt!", "", "success")
+            this.props.showView("home");
         })
     }.bind(this)
 
     render() {
         return (
             <div>
-            <form className="form-signup" onSubmit={this.handleLogin}>
+            <form className="form-signup" onSubmit={this.createUser}>
                 <h1 className="h3 mb-3 font-weight-normal">Register</h1>
                 <label htmlFor="inputFirstName" className="sr-only">First Name</label>
                 <input onChange={this.handleFieldChange} type="First Name" id="firstName" className="form-control" placeholder="First Name" required="" autoFocus="" />

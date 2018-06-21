@@ -31,6 +31,7 @@ export default class Login extends Component {
     handleLogin = function (e) {
         e.preventDefault()
 
+
         // Determine if a user already exists in API
         fetch(`http://localhost:8088/users?email=${this.state.email}`)
             .then(r => r.json())

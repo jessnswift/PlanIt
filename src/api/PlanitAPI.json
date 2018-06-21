@@ -41,6 +41,13 @@
       "lastName": "Hood",
       "email": "nathan@gmail.com",
       "password": "123"
+    },
+    {
+      "firstName": "Emma",
+      "lastName": "Townsend",
+      "email": "emma@gmail.com",
+      "password": "123",
+      "id": 7
     }
   ],
   "budgets": [
@@ -51,25 +58,11 @@
       "userId": 0
     },
     {
-      "userId": 1,
-      "budgetName": "wedding 1",
+      "userId": 3,
+      "budgetName": "Second Time Around",
       "value": "wedding",
-      "budgetAmount": 10000,
+      "budgetAmount": 100000,
       "id": 2
-    },
-    {
-      "userId": 2,
-      "budgetName": "Wedding Take 2",
-      "value": "wedding",
-      "budgetAmount": 30000,
-      "id": 3
-    },
-    {
-      "userId": 6,
-      "budgetName": "Wedding Take 2",
-      "value": "wedding",
-      "budgetAmount": 20000,
-      "id": 4
     }
   ]
 }

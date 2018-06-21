@@ -51,6 +51,9 @@ class App extends Component {
     if (view === "register") {
       this.setState({ register: true })
       this.setActiveUser(null)
+    } else {
+      this.state.register = false;
+      this.setState(this.state)
     }
 
     // Update state to correct view will be rendered
@@ -74,9 +77,9 @@ class App extends Component {
         case "home":
         default:
         // REMOVE THIS LINE BEFORE COMMITTING
-        return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
+        // return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
         // UNCOMMENT THIS LINE BEFORE COMMITING
-          // return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
+          return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
       }
     }
   }
