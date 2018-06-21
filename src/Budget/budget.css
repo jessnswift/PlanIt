@@ -1,6 +1,14 @@
 .edit-btn {
-    /* background-image: url(../Img/edit.svg); */
     padding: 10px;
     border: 0px black solid;
     margin: 10px;
+}
+
+.card {
+    margin-bottom: 8px;
+}
+
+.card .btn {
+    float: right;
+    margin-left: 10px;
 }

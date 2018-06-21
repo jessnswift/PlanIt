@@ -71,14 +71,5 @@
       "budgetAmount": 20000,
       "id": 4
     }
-  ],
-  "userBudgets": [
-    {
-      "id": 1,
-      "value": "",
-      "newCategoryName": "",
-      "amountToDistribute": "",
-      "userId": 0
-    }
   ]
 }

@@ -3,6 +3,93 @@ import "./budget.css"
 
 const swal = window.swal;
 
+class CategoryItem extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            categoryName: ''
+        }
+    }
+
+    componentDidMount() {
+        this.setState(this.state)
+    }
+
+    onCatEdit = function (e) {
+        let fieldID = e.target.id
+        this.state[fieldID] = e.target.value
+        this.setState(this.state)
+        console.log(e.target.value)
+    }.bind(this)
+
+    editCat = function() {
+        this.state.isEditing = true;
+        this.setState(this.state);
+    }.bind(this)
+
+    cancelEdit = function() {
+        this.state.isEditing = false;
+        this.setState(this.state);
+    }.bind(this)
+
+    saveEdit = function() {
+        console.log('SAVING CATEGORIES IS STILL TO BE IMPLEMENTED!')
+        // let payload = {
+        //     categoryText: this.state.categoryText,
+        //     categoryAmount: this.state.categoryAmount
+        // }
+
+        // fetch(`http://localhost:8088/budgets/${this.props.categoryId}`, {
+        //     method: "PUT",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({})
+        // }).then(() => this.props.showView('budget') );
+    }.bind(this)
+
+    render() {
+        if (this.state.isEditing) {
+            return (
+                // <h1> Item </h1>
+                // EDITING PART
+
+                <div key={this.unique++} >
+                    <form>
+                        <div className={"card"} attribute={this.state.categoryName}>
+
+                            <div className={"card-body"} onChange={this.handleFieldChange}>
+                                <div className={"form-check form-check-inline"}>
+                                    <input type="text" className={"form-check-input"} id="categoryText" onChange={this.onCatEdit} contentEditable={true} defaultValue={this.props.categoryName } />
+                                    <input className={"form-check-input"} id="categoryAmount" onChange={this.onCatEdit} contentEditable={true} defaultValue={" $" + this.props.amount} />
+                                    <button type="button" onClick={() => this.saveEdit()} className="btn btn-sm btn-outline">Save Edit</button>
+                                    <button type="button" onClick={() => this.cancelEdit()} className="btn btn-sm btn-outline">Cancel Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            )
+        } else {
+            return (
+                // NON EDITING PART
+                <div key={this.unique++} >
+                    <form>
+                        <div className={"card"} attribute={this.state.categoryName}>
+                            <div className={"card-body"} onChange={this.handleFieldChange}>
+                                {this.props.categoryName}: ${this.props.amount}
+                                <button type="button" onClick={this.editCat} className="btn btn-sm btn-outline">Edit</button>
+                                {/* <button type="button" onClick={() => this.editCat(detailObj)} className="btn btn-outline">Edit</button> */}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            )
+        }
+    }
+}
+
+
 export default class Budget extends Component {
 
     constructor(props) {
@@ -35,30 +122,25 @@ export default class Budget extends Component {
             .then(budgets => {
                 if (budgets.length) {
                     var currentBudget = budgets[0]
-                    this.setState({ budgetAmount: currentBudget.budgetAmount,  budgetName: currentBudget.budgetName});
+                    this.setState({
+                        budgetAmount: currentBudget.budgetAmount,
+                        budgetName: currentBudget.budgetName,
+                        budgetId: currentBudget.id
+                    });
                 }
             })
+        // call another fetch for all categories that have budgetId of this.state.budgetId and save them maybe
+        // as an array on state. Then you can get rid of the budgetPercentages array up above.
     }
 
     onCatEdit = function (e) {
-        this.setState({categoryText: e.target.value})
+        this.setState({ categoryText: e.target.value })
         console.log(e.target.value)
     }.bind(this)
 
     editCat = function (detailObj) {
         detailObj.isEditing = true;
-        this.setState({save: true})
-    }
-
-    cancelEdit = function (detailObj) {
-        detailObj.isEditing = false;
-        this.setState({save: false})
-    }
-
-    saveEdit = function (detailObj) {
-        //
-        detailObj.isEditing = false;
-        this.setState({save: false})
+        this.setState({ save: true })
     }
 
     formatCategoryText(categoryObj) {
@@ -66,46 +148,12 @@ export default class Budget extends Component {
     }
 
     render() {
-        let editClass = this.props.editMode ? 'is--show' : '';
         let budgetAmountElement = (<h1>{this.state.budgetName} ${this.state.budgetAmount}</h1>)
         let cats = this.state.budgetPercentages.map(function (detailObj) {
-            // let stateToUse = {};
-            // stateToUse[detailObj.budgetName + "categoryText"] = this.formatCategoryText(detailObj)
-            // this.setState(stateToUse);
+            return (
+                <CategoryItem categoryId={detailObj.id} categoryName={detailObj.categoryName} amount={(this.state.budgetAmount * detailObj.percentage) / 100}></CategoryItem>
+            )
 
-            if (detailObj.isEditing) {
-                // EDITING VERSION
-                // cancel edit button here
-                // save changes button here
-                return (
-                    <div key={this.unique++} >
-                        <form>
-                            <div className={"card"} attribute={this.state.categoryName}>
-                                <div className={"card-body"} onChange={this.handleFieldChange}>
-                                    <input id="categoryText" onChange={this.onCatEdit} contentEditable={true} defaultValue={this.formatCategoryText(detailObj)}/>
-                                    <button type="button" onClick={() => this.saveEdit(detailObj)} className="btn btn-outline">Save Edit</button>
-                                    <button type="button" onClick={() => this.cancelEdit(detailObj)} className="btn btn-outline">Cancel Edit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                )
-            } else {
-                // NOT EDITING version
-                // add edit button in this version
-                return (
-                    <div key={this.unique++} >
-                        <form>
-                            <div className={"card"} attribute={this.state.categoryName}>
-                                <div className={"card-body"} onChange={this.handleFieldChange}>
-                                    {detailObj.categoryName}: ${(this.state.budgetAmount * detailObj.percentage) / 100}
-                                    <button type="button" onClick={() => this.editCat(detailObj)} className="btn btn-outline">Edit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                )
-            }
         }.bind(this))
         return (
             <div className="container">

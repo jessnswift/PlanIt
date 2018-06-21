@@ -41,7 +41,32 @@ export default class Home extends Component {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ userId: +localStorage.getItem("activeUser"), budgetName: this.state.budgetName, value: this.state.value, budgetAmount: +this.state.budgetAmount })
-        }).then(() => this.props.showView('budget') );
+        }).then((response) => {
+            this.props.showView('budget')
+            // inspect the response and get the newly created budget's id and maybe save it to state
+        });
+
+        //budgetPercentages: [
+        //     { budgetId: categoryName: 'Reception', percentage: 45, isEditing: true },
+        //     { categoryName: 'Ceremony', percentage: 3, isEditing: true },
+        //     { categoryName: 'Planner', percentage: 8, isEditing: true },
+        //     { categoryName: 'Attire', percentage: 12, isEditing: false },
+        //     { categoryName: 'Stationery', percentage: 3, isEditing: false },
+        //     { categoryName: 'Flowers/Decore', percentage: 12, isEditing: false },
+        //     { categoryName: 'Photos/Video', percentage: 12, isEditing: false },
+        //     { categoryName: 'Mics', percentage: 5, isEditing: false }
+        // ]
+        // budgetPercentages.map(function(suggestedCategory) {
+            // suggestedCategory.budgetId = this.state.createdBudgetId
+        //  fetch("http://localhost:8080/categories", {
+        //      method: "POST",
+                // headers" {
+
+                // },
+                // body: suggestedCategory
+        // })
+        // })
+        //
 
     }.bind(this)
 
