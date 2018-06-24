@@ -1,1 +1,2 @@
-json-server -w src/api/PlanitAPI.json
+json-server -w src/api/PlanitAPI.json -p 8088
+
