@@ -48,6 +48,20 @@
       "email": "emma@gmail.com",
       "password": "123",
       "id": 7
+    },
+    {
+      "firstName": "emma",
+      "lastName": "townsend",
+      "email": "emma@gmail.com",
+      "password": "123",
+      "id": 8
+    },
+    {
+      "firstName": "Foxy",
+      "lastName": "Swift",
+      "email": "foxy@gmail.com",
+      "password": "123",
+      "id": 9
     }
   ],
   "budgets": [
@@ -63,6 +77,20 @@
       "value": "wedding",
       "budgetAmount": 100000,
       "id": 2
+    },
+    {
+      "userId": 2,
+      "budgetName": "My Vegas Wedding",
+      "value": "wedding",
+      "budgetAmount": 5000,
+      "id": 3
+    },
+    {
+      "userId": 7,
+      "budgetName": "Wedding Take 2",
+      "value": "wedding",
+      "budgetAmount": 6000,
+      "id": 4
     }
   ]
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import "./budget.css"
+import NavBar from "../Nav/Nav";
 
 const swal = window.swal;
 
@@ -156,12 +157,14 @@ export default class Budget extends Component {
 
         }.bind(this))
         return (
+            <div>
+            <NavBar logout={this.props.logout}/>
             <div className="container">
                 {budgetAmountElement}
                 {cats}
                 <button type="button" onClick={this.handleLogout.bind(this)} className="btn btn-outline">logout</button>
             </div>
-
+            </div>
         )
     }
 }

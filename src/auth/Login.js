@@ -72,8 +72,8 @@ export default class Login extends Component {
                     <label htmlFor="inputPassword" className="sr-only">Password</label>
                     <input onChange={this.handleFieldChange} type="password" id="password" className="form-control" placeholder="Password" required="" />
                     <button className="btn-lg btn btn-outline btn-block form-signin" type="submit">Sign in</button>
+                    <button className="btn-lg btn btn-outline btn-block form-register" id="button__register" onClick={this.props.showView} type="button">Register</button>
                 </form>
-                    <button className="btn-lg btn btn-outline btn-block form-register" id="button__register" onClick={this.props.showView} type="button">Register Here</button>
                     <p className="mt-5 mb-3 text-muted copyRight">© PlanIt 2018</p>
             </div>
         )

@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import './home.css'
+import NavBar from "./Nav/Nav";
 
 const swal = window.swal;
 
@@ -11,11 +13,6 @@ export default class Home extends Component {
             value: "",
             budgetAmount: 0
         }
-    }
-
-
-    handleLogout = () => {
-        this.props.logout();
     }
 
     // Update state whenever an input field is edited
@@ -57,13 +54,13 @@ export default class Home extends Component {
         //     { categoryName: 'Mics', percentage: 5, isEditing: false }
         // ]
         // budgetPercentages.map(function(suggestedCategory) {
-            // suggestedCategory.budgetId = this.state.createdBudgetId
+        // suggestedCategory.budgetId = this.state.createdBudgetId
         //  fetch("http://localhost:8080/categories", {
         //      method: "POST",
-                // headers" {
+        // headers" {
 
-                // },
-                // body: suggestedCategory
+        // },
+        // body: suggestedCategory
         // })
         // })
         //
@@ -73,30 +70,29 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-
-                <form className="budgetForm" onSubmit={this.createNewBudget}>
-                    <div className="form-group">
-                        <label htmlFor="budgetName">Create A New Budget</label>
-                        <input onChange={this.handleFieldChange} type="text" className="form-control" id="budgetName" placeholder="Name Your Budget" />
-                    </div>
-                    <label>
-                        Select Your Budget
+                <NavBar logout={this.props.logout} />
+                <div className="container">
+                    <form className="budgetForm" onSubmit={this.createNewBudget}>
+                        <div className="form-group">
+                            <label htmlFor="budgetName">Create A New Budget</label>
+                            <input onChange={this.handleFieldChange} type="text" className="form-control" id="budgetName" placeholder="Name Your Budget" />
+                        </div>
+                        <label>
+                            Select Your Budget
                     <select onChange={this.handleFieldChange} className="form-control" defaultValue={this.state.value} id="value">
-                            <option value="" disabled selected>Select a Budget</option>
-                            <option value="wedding">Wedding</option>
-                            <option value="party">Party</option>
-                            <option value="vacation">Vacation</option>
-                        </select>
-                    </label>
-                    <div className="form-group">
-                        <input onChange={this.handleFieldChange} type="number" step="any" min="1.00" className="form-control" id="budgetAmount" placeholder="Total Budget Amount" />
-                    </div>
-                    <button type="submit" value="Submit" className="btn btn-outline budgetButton">Submit</button>
-                </form>
-                <br>
-                </br>
-                <div>
-                    <button type="buttonon" onClick={this.handleLogout} className="btn btn-outline">logout</button>
+                                <option value="" disabled selected>Select a Budget</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="party">Party</option>
+                                <option value="vacation">Vacation</option>
+                            </select>
+                        </label>
+                        <div className="form-group">
+                            <input onChange={this.handleFieldChange} type="number" step="any" min="1.00" className="form-control" id="budgetAmount" placeholder="Total Budget Amount" />
+                        </div>
+                        <button type="submit" value="Submit" className="btn btn-outline budgetButton">Submit</button>
+                    </form>
+                    <br>
+                    </br>
                 </div>
             </div>
         )
