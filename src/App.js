@@ -12,7 +12,8 @@ class App extends Component {
     currentView: "login",
     activeUser: localStorage.getItem("activeUser"),
     // currentBudget: currentBudget.budgetAmount,
-    register: false
+    register: false,
+    categories: []
   }
 
   // Function to update local storage and set activeUser state
@@ -69,17 +70,19 @@ class App extends Component {
     } else if (this.state.register === true && this.state.activeUser === null) {
       return <Register showView={this.showView} setActiveUser={this.setActiveUser} />
     } else {
+
       switch (this.state.currentView) {
         case "logout":
           return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
         case "budget":
           return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
         case "home":
+          return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
         default:
         // REMOVE THIS LINE BEFORE COMMITTING
-        // return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
-        // UNCOMMENT THIS LINE BEFORE COMMITING
-          return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
+        return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
+
+
       }
     }
   }

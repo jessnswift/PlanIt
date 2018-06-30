@@ -12,3 +12,43 @@
     float: right;
     margin-left: 10px;
 }
+
+.budget-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.budget-header,
+ span {
+    font-size: 1.5rem;
+    color: #18b1a3
+}
+
+.budget-header h1 {
+    color: #9d6665;
+}
+
+.category-edit-container,
+.category-edit-fields,
+.category-edit-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.category-edit-container {
+    justify-content: space-between;
+}
+
+.category-edit-fields {
+    justify-content: flex-start;
+}
+
+.category-edit-buttons {
+    justify-content: flex-end;
+}
+
+.category-edit-container .form-control {
+    margin: 0 8px;
+}

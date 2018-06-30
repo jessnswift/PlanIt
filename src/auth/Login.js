@@ -43,14 +43,17 @@ export default class Login extends Component {
                         fetch(`http://localhost:8088/budgets`)
                             .then(r => r.json())
                             .then(budgets => {
+                                debugger;
                                 var userBudgets = budgets.filter((budget) => {
                                     return budget.userId == localStorage.getItem('activeUser');
                                 })
                                 if (userBudgets.length > 0) {
                                     this.props.showView("budget")
+                                } else {
+                                    this.props.showView("home") // a.k.a. new budget form component
                                 }
                             })
-                        this.props.showView("home")
+
                     } else {
                         swal("Oops!", "Incorrect login info, please try again!", "error")
                     }
