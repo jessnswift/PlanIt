@@ -66,85 +66,12 @@
   ],
   "budgets": [
     {
-      "id": 1,
-      "type": "",
-      "budgetAmount": 0,
-      "userId": 0
-    },
-    {
       "userId": 1,
-      "budgetName": "Swift",
+      "budgetName": "Test",
       "value": "wedding",
-      "budgetAmount": 325235,
-      "id": 2
-    },
-    {
-      "userId": 6,
-      "budgetName": "asdf",
-      "value": "wedding",
-      "budgetAmount": 354624,
-      "id": 3
+      "budgetAmount": 1234,
+      "id": 1
     }
   ],
-  "categories": [
-    {
-      "percentage": 45,
-      "isEditing": true,
-      "amount": "159580.82",
-      "budget_id": 3,
-      "id": 1
-    },
-    {
-      "categoryName": "Ceremonyyyyy",
-      "percentage": 3,
-      "isEditing": true,
-      "amount": 10638.72,
-      "budget_id": 3,
-      "id": 2
-    },
-    {
-      "percentage": 8,
-      "isEditing": true,
-      "amount": "28369.91",
-      "budget_id": 3,
-      "id": 3
-    },
-    {
-      "percentage": 12,
-      "isEditing": false,
-      "amount": "42554.82",
-      "budget_id": 3,
-      "id": 4
-    },
-    {
-      "percentage": 3,
-      "isEditing": false,
-      "amount": "10638.71",
-      "budget_id": 3,
-      "id": 5
-    },
-    {
-      "percentage": 12,
-      "isEditing": false,
-      "amount": "42554.82",
-      "budget_id": 3,
-      "id": 6
-    },
-    {
-      "categoryName": "Micsssss",
-      "percentage": 5,
-      "isEditing": false,
-      "amount": "17731.22",
-      "budget_id": 3,
-      "id": 7
-    },
-    {
-      "categoryName": "Flowers/Decore",
-      "percentage": 12,
-      "isEditing": false,
-      "amount": 42554.88,
-      "budget_id": 3,
-      "id": 8
-    }
-  ]
+  "categories": []
 }

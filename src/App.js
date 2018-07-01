@@ -29,6 +29,22 @@ class App extends Component {
     })
   }
 
+  loginCallback() {
+    fetch(`http://localhost:8088/budgets`)
+      .then(r => r.json())
+      .then(budgets => {
+          debugger;
+          var userBudgets = budgets.filter((budget) => {
+              return budget.userId == localStorage.getItem('activeUser');
+          })
+          if (userBudgets.length > 0) {
+              this.showView("budget")
+          } else {
+              this.showView("home") // a.k.a. new budget form component
+          }
+      })
+  }
+
   // Argument can be an event (via NavBar) or a string (via Login)
   showView = function (e) {
     let view = null
@@ -66,14 +82,14 @@ class App extends Component {
 
   View = () => {
     if (this.state.activeUser === null && this.state.register === false) {
-      return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
+      return <Login loginCallback={this.loginCallback} showView={this.showView} setActiveUser={this.setActiveUser} />
     } else if (this.state.register === true && this.state.activeUser === null) {
       return <Register showView={this.showView} setActiveUser={this.setActiveUser} />
     } else {
 
       switch (this.state.currentView) {
         case "logout":
-          return <Login showView={this.showView} setActiveUser={this.setActiveUser} />
+          return <Login loginCallback={this.loginCallback} showView={this.showView} setActiveUser={this.setActiveUser} />
         case "budget":
           return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
         case "home":

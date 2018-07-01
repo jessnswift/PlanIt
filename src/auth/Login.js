@@ -5,11 +5,21 @@ import "./login.css"
 const swal = window.swal;
 export default class Login extends Component {
 
-    // Set initial state
-    state = {
-        email: "",
-        password: "",
-        register: "false"
+    constructor(props) {
+        debugger;
+        super(props);
+        this.props = props;
+
+        // Set initial state
+        this.state = {
+            email: "",
+            password: "",
+            register: "false"
+        }
+    }
+
+    componentDidMount() {
+        debugger;
     }
 
     // Update state whenever an input field is edited
@@ -31,7 +41,6 @@ export default class Login extends Component {
     handleLogin = function (e) {
         e.preventDefault()
 
-
         // Determine if a user already exists in API
         fetch(`http://localhost:8088/users?email=${this.state.email}`)
             .then(r => r.json())
@@ -40,20 +49,8 @@ export default class Login extends Component {
                 if (user.length) {
                     if (user[0].password === this.state.password) {
                         this.props.setActiveUser(user[0].id)
-                        fetch(`http://localhost:8088/budgets`)
-                            .then(r => r.json())
-                            .then(budgets => {
-                                debugger;
-                                var userBudgets = budgets.filter((budget) => {
-                                    return budget.userId == localStorage.getItem('activeUser');
-                                })
-                                if (userBudgets.length > 0) {
-                                    this.props.showView("budget")
-                                } else {
-                                    this.props.showView("home") // a.k.a. new budget form component
-                                }
-                            })
-
+                        debugger;
+                        this.props.loginCallback();
                     } else {
                         swal("Oops!", "Incorrect login info, please try again!", "error")
                     }
