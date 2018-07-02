@@ -33,7 +33,6 @@ class App extends Component {
     fetch(`http://localhost:8088/budgets`)
       .then(r => r.json())
       .then(budgets => {
-          debugger;
           var userBudgets = budgets.filter((budget) => {
               return budget.userId == localStorage.getItem('activeUser');
           })
@@ -91,12 +90,11 @@ class App extends Component {
         case "logout":
           return <Login loginCallback={this.loginCallback} showView={this.showView} setActiveUser={this.setActiveUser} />
         case "budget":
-          return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
+          return <Budget budgetCategories={this.state.budgetCategories} showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
         case "home":
-          return <Home showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
+          return <Home budgetCategories={this.state.budgetCategories} showView={this.showView} activeUser={this.state.activeUser} logout={this.setActiveUser} />
         default:
-        // REMOVE THIS LINE BEFORE COMMITTING
-        return <Budget showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
+        return <Budget budgetCategories={this.state.budgetCategories} showView={this.showView} setActiveUser={this.setActiveUser} logout={this.setActiveUser}/>
 
 
       }

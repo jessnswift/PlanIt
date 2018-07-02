@@ -28,7 +28,7 @@ export default class NavBar extends Component {
                     className="sr-only">(current)</span></a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" onClick={this.handleLogout}>Logout</a>
+                <a className="nav-link" href="#" onClick={this.handleLogout}>Logout</a>
               </li>
             </ul>
           </div>

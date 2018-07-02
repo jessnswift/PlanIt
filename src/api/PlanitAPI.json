@@ -66,11 +66,18 @@
   ],
   "budgets": [
     {
-      "userId": 1,
-      "budgetName": "Test",
+      "userId": "1",
+      "budgetName": "Swift",
       "value": "wedding",
-      "budgetAmount": 1234,
+      "budgetAmount": "43243",
       "id": 1
+    },
+    {
+      "userId": "5",
+      "budgetName": "Hood ",
+      "value": "wedding",
+      "budgetAmount": "7789",
+      "id": 2
     }
   ],
   "categories": []

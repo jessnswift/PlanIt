@@ -13,16 +13,6 @@ export default class Home extends Component {
             value: "",
             budgetAmount: 0
         }
-        this.budgetPercentages = [
-        {categoryName: 'Reception', percentage: 45, isEditing: true},
-        {categoryName: 'Ceremony', percentage: 3, isEditing: true},
-        {categoryName: 'Planner', percentage: 8, isEditing: true},
-        {categoryName: 'Attire', percentage: 12, isEditing: false},
-        {categoryName: 'Stationery', percentage: 3, isEditing: false},
-        {categoryName: 'Flowers/Decore', percentage: 12, isEditing: false},
-        {categoryName: 'Photos/Video', percentage: 12, isEditing: false},
-        {categoryName: 'Mics', percentage: 5, isEditing: false}
-      ]
     }
 
     // Update state whenever an input field is edited
@@ -47,28 +37,36 @@ export default class Home extends Component {
               "Content-Type": "application/json"
           },
         body: JSON.stringify({
-          userId: +localStorage.getItem("activeUser"),
+          userId: localStorage.getItem("activeUser"),
           budgetName: this.state.budgetName,
           value: this.state.value,
-          budgetAmount: +this.state.budgetAmount
+          budgetAmount: this.state.budgetAmount
         })
       }).then((response) => {
-        return response.json()
-      }).then((response) => {
-        // let mostRecentBudget = response[0]
-        this.budgetPercentages.map((suggestedCategory)=> {
-          suggestedCategory.amount = (response.budgetAmount * suggestedCategory.percentage) / 100;
-          suggestedCategory.budget_id = response.id;
-          fetch("http://localhost:8088/categories", {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(suggestedCategory)
-          }).then(response => response.json()).then((response) => {this.props.showView('budget')})
+            return response.json()
         })
+        .then((response) => {
+            // let mostRecentBudget = response[0]
+            this.props.budgetCategories.map((suggestedCategory, i) => {
+                suggestedCategory.amount = (response.budgetAmount * suggestedCategory.percentage) / 100;
+                suggestedCategory.budget_id = response.id;
+                fetch("http://localhost:8088/categories", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(suggestedCategory)
+                })
+                .then(r => r.json())
+                .then(r => {
+                    if (i === this.props.budgetCategories.length - 1){
+                        // Don't change views until the last category is finished posting
+                        this.props.showView('budget');
+                    }
+                })
+            })
 
-      });
+          });
 
       // inspect the response and get the newly created budget's id and maybe save it to state
       }.bind(this);
@@ -96,6 +94,7 @@ export default class Home extends Component {
                             <input onChange={this.handleFieldChange} type="number" step="any" min="1.00" className="form-control" id="budgetAmount" placeholder="Total Budget Amount" />
                         </div>
                         <button type="submit" value="Submit" className="btn btn-outline budgetButton">Submit</button>
+
                     </form>
                     <br>
                     </br>

@@ -6,7 +6,6 @@ const swal = window.swal;
 export default class Login extends Component {
 
     constructor(props) {
-        debugger;
         super(props);
         this.props = props;
 
@@ -19,7 +18,6 @@ export default class Login extends Component {
     }
 
     componentDidMount() {
-        debugger;
     }
 
     // Update state whenever an input field is edited
@@ -49,7 +47,6 @@ export default class Login extends Component {
                 if (user.length) {
                     if (user[0].password === this.state.password) {
                         this.props.setActiveUser(user[0].id)
-                        debugger;
                         this.props.loginCallback();
                     } else {
                         swal("Oops!", "Incorrect login info, please try again!", "error")

@@ -9,10 +9,11 @@ class CategoryItem extends Component {
         super(props);
         this.props = props;
         this.state = {
-            categoryName: props.categoryObj.categoryName,
-            amount: props.categoryObj.amount,
-            categoryId: props.categoryObj.id,
-            categoryObj: props.categoryObj
+            isEditing: false,
+            categoryName: this.props.categoryObj.categoryName,
+            amount: this.props.categoryObj.amount,
+            categoryId: this.props.categoryObj.id,
+            categoryObj: this.props.categoryObj
         }
     }
 
@@ -28,19 +29,17 @@ class CategoryItem extends Component {
     onCatEdit = function (e) {
         let fieldID = e.target.id;
         this.setState({[fieldID]: e.target.value})
-        console.log(e.target.id)
     }.bind(this);
 
-    toggleEditCat = function () {
+    toggleEditCat = function (e) {
+        console.log(e.target.value)
         this.setState({isEditing: !this.state.isEditing});
     }.bind(this);
 
     deleteCat = () => {
-        debugger
         fetch(`http://localhost:8088/categories/${this.state.categoryId}`, {
             method: "DELETE"
         }).then(r => r.json()).then((r) => {
-            debugger
             this.props.refreshCats(this.state.categoryId)
         })
     };
@@ -50,15 +49,20 @@ class CategoryItem extends Component {
     }.bind(this);
 
     saveEdit = function () {
-        this.props.categoryObj.categoryName = this.state.categoryText;
-        this.props.categoryObj.amount = this.state.amount;
-
+        let categoryPostBody = {
+            categoryName: this.state.categoryText || this.props.categoryName,
+            amount: this.state.amount || this.props.amount,
+            budget_id: this.props.budgetId,
+            id: this.props.budgetId,
+            percentage: this.props.categoryObj.percentage,
+            isEditing: this.props.categoryObj.isEditing,
+        }
         fetch(`http://localhost:8088/categories/${this.props.categoryId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(this.props.categoryObj)
+            body: JSON.stringify(categoryPostBody)
         }).then(r => r.json()).then((r) => {
             this.updateSelf(r);
             this.toggleEditCat()
@@ -66,8 +70,10 @@ class CategoryItem extends Component {
     }.bind(this)
 
     render() {
-        if (this.state.isEditing) {
-            return (
+        console.log(this.props.categoryObj.categoryName)
+        return (
+            <div>
+        {this.state.isEditing ? (
                 // <h1> Item </h1>
                 // EDITING PART
 
@@ -81,10 +87,11 @@ class CategoryItem extends Component {
                                         <input type="text" className={"form-control form-check-input"}
                                             id="categoryText" onChange={this.onCatEdit}
                                             contentEditable={true}
-                                            defaultValue={this.state.categoryName} />
+                                            defaultValue={this.props.categoryObj.categoryName} />
+                                            {this.props.categoryObj.categoryName}
                                         <input className={"form-control form-check-input"} id="amount"
                                             onChange={this.onCatEdit} contentEditable={true}
-                                            defaultValue={this.state.amount} />
+                                            defaultValue={document.getElementById(this.props.categoryObj.categoryName).textContent} />
                                     </div>
                                     <div className={"category-edit-buttons"}>
                                         <button type="button" onClick={() => this.saveEdit()}
@@ -99,15 +106,16 @@ class CategoryItem extends Component {
                         </div>
                     </form>
                 </div>
-            )
-        } else {
-            return (
+            ):
+
+            (
                 // NON EDITING PART
                 <div>
                     <form>
                         <div className={"card"} attribute={this.state.categoryName}>
                             <div className={"card-body"} onChange={this.handleFieldChange}>
-                                {this.state.categoryName}: ${this.state.amount}
+                                {/* {this.state.categoryName}: ${this.state.amount} */}
+                                {this.props.formatCategoryText(this.props.categoryObj)}
                                 <button type="button" onClick={this.deleteCat}
                                     className="btn btn-sm btn-outline">Delete
                                 </button>
@@ -120,19 +128,32 @@ class CategoryItem extends Component {
                 </div>
             )
         }
+</div>
+    )
     }
 }
+
 
 
 export default class Budget extends Component {
 
     constructor(props) {
         super(props);
+        this.uniqueKey = 1
         this.state = {
             budgetAmount: 0,
             budgetName: "",
             save: false,
-            budgetCategories: [],
+            budgetCategories: [
+                {categoryName: 'Reception', percentage: 45},
+                {categoryName: 'Ceremony', percentage: 3},
+                {categoryName: 'Planner', percentage: 8},
+                {categoryName: 'Attire', percentage: 12},
+                {categoryName: 'Stationery', percentage: 3},
+                {categoryName: 'Flowers/Decore', percentage: 12},
+                {categoryName: 'Photos/Video', percentage: 12},
+                {categoryName: 'Misc', percentage: 5}
+                ],
             budgetId: 0
         }
 
@@ -144,12 +165,12 @@ export default class Budget extends Component {
         this.props.logout();
     }
 
-
-
     componentDidMount() {
-        debugger;
+        console.log("componentDidMount", this.state)
         fetch(`http://localhost:8088/budgets?userId=${localStorage.getItem('activeUser')}`)
-            .then(r => r.json())
+            .then(r => {
+                return r.json()
+            })
             .then(budgets => {
                 if (budgets.length) {
                     var currentBudget = budgets[0];
@@ -161,14 +182,16 @@ export default class Budget extends Component {
                     fetch(`http://localhost:8088/categories?budget_id=${currentBudget.id}`)
                         .then(res => res.json())
                         .then(categories => {
-                            this.setState({budgetCategories: categories});
+                            // this.setState({budgetCategories: categories});
                         })
                 }
                 // call another fetch for all categories that have budgetId of this.state.budgetId and save them maybe
-                // this.refreshCats();
+                this.refreshCats();
 
-            });
-    }
+            }).catch(error => console.log( error));
+        console.log("componentDidMountEnd", this.state)
+        }
+
 
     refreshCats = function(deletedCategoryId) {
         let filteredCategories = this.state.budgetCategories.filter( (catsObj) => {
@@ -178,17 +201,17 @@ export default class Budget extends Component {
                 return true
             }
         })
-        this.setState({budgetCategories: filteredCategories})
-        // fetch(`http://localhost:8088/categories?budget_id=${this.state.budgetId}`)
-        //     .then(res => res.json())
-        //     .then(categories => {
-        //         this.setState({budgetCategories: categories});
-        //     })
+        // this.setState({budgetCategories: filteredCategories})
+        fetch(`http://localhost:8088/categories?budget_id=${this.state.budgetId}`)
+            .then(res => res.json())
+            .then(categories => {
+                // this.setState({budgetCategories: categories});
+            })
     }.bind(this);
 
-    formatCategoryText(categoryObj) {
-        return `${categoryObj.categoryName}: \$${(this.state.budgetAmount * categoryObj.percentage) / 100}`
-    }
+    formatCategoryText = function (categoryObj) { this.setState
+        return (<p> {categoryObj.categoryName}: <span id={categoryObj.categoryName}> ${(this.state.budgetAmount * categoryObj.percentage) / 100} </span> </p>)
+    }.bind(this)
 
     buildBudgetHeader() {
         return (
@@ -199,18 +222,16 @@ export default class Budget extends Component {
         );
     }
 
-    buildCategories() {
-        debugger;
-        return this.state.budgetCategories.map(function (detailObj, i) {
-            debugger;
+    buildCategories = function () {
+        return (this.state.budgetCategories.map( (detailObj, i) => {
             return (
-                <CategoryItem key={i + detailObj.id} categoryObj={detailObj} categoryId={detailObj.id}
+                <CategoryItem key={this.uniqueKey++} categoryObj={detailObj} categoryId={detailObj.id}
                     categoryName={detailObj.categoryName}
-                    amount={detailObj.amount} refreshCats={this.refreshCats}></CategoryItem>
+                    amount={detailObj.amount} budgetId={this.state.budgetId} refreshCats={this.refreshCats} formatCategoryText={this.formatCategoryText} />
             )
-
-        }.bind(this));
-    }
+        })
+        )
+    }.bind(this);
 
     render() {
 
@@ -220,9 +241,6 @@ export default class Budget extends Component {
                 <div className="container">
                     {this.buildBudgetHeader()}
                     {this.buildCategories()}
-                    <button type="button" onClick={this.handleLogout.bind(this)}
-                        className="btn btn-outline">logout
-            </button>
                 </div>
             </div>
 
