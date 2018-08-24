@@ -28,7 +28,6 @@ class CategoryItem extends Component {
     onCatEdit = function (e) {
         let fieldID = e.target.id;
         this.setState({[fieldID]: e.target.value})
-        console.log(e.target.id)
     }.bind(this);
 
     toggleEditCat = function () {
@@ -36,11 +35,9 @@ class CategoryItem extends Component {
     }.bind(this);
 
     deleteCat = () => {
-        debugger
         fetch(`http://localhost:8088/categories/${this.state.categoryId}`, {
             method: "DELETE"
         }).then(r => r.json()).then((r) => {
-            debugger
             this.props.refreshCats(this.state.categoryId)
         })
     };
@@ -147,7 +144,6 @@ export default class Budget extends Component {
 
 
     componentDidMount() {
-        debugger;
         fetch(`http://localhost:8088/budgets?userId=${localStorage.getItem('activeUser')}`)
             .then(r => r.json())
             .then(budgets => {
@@ -200,9 +196,7 @@ export default class Budget extends Component {
     }
 
     buildCategories() {
-        debugger;
         return this.state.budgetCategories.map(function (detailObj, i) {
-            debugger;
             return (
                 <CategoryItem key={i + detailObj.id} categoryObj={detailObj} categoryId={detailObj.id}
                     categoryName={detailObj.categoryName}
@@ -217,12 +211,9 @@ export default class Budget extends Component {
         return (
             <div>
                 <NavBar logout={this.props.logout} />
-                <div className="container">
+                <div className="container" id="budget-container">
                     {this.buildBudgetHeader()}
                     {this.buildCategories()}
-                    <button type="button" onClick={this.handleLogout.bind(this)}
-                        className="btn btn-outline">logout
-            </button>
                 </div>
             </div>
 

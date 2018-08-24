@@ -29,7 +29,6 @@ body {
     position: absolute;
     bottom: 8px;
     left: 16px;
-    /* font-size: 18px; */
 }
 
 .swal-button, .btn-outline {
@@ -39,4 +38,14 @@ body {
 
 .form-control {
     opacity: 0.9;
+}
+
+.form-signin {
+    margin-top: 10%;
+}
+
+.title {
+    font-size: 5em;
+    text-align: center;
+    color: #7b6565;
 }

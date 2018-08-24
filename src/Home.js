@@ -88,7 +88,7 @@ export default class Home extends Component {
                         <select onChange={this.handleFieldChange} className="form-control" defaultValue={this.state.value} id="value">
                                 <option value="" disabled defaultValue>Select a Budget</option>
                                 <option value="wedding">Wedding</option>
-                                <option value="party">Party</option>
+                                <option value="party">Special Event</option>
                                 <option value="vacation">Vacation</option>
                             </select>
                         </label>
