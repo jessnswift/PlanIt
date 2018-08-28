@@ -54,12 +54,12 @@
   ],
   "categories": [
     {
-      "categoryName": "Reception",
       "percentage": 45,
       "isEditing": true,
-      "amount": 13499.55,
+      "amount": "13499.60",
       "budget_id": 1,
-      "id": 1
+      "id": 1,
+      "categoryName": "wedding"
     },
     {
       "categoryName": "Ceremony",
