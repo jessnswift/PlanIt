@@ -4,5 +4,5 @@ Planit takes the ease
 
 ```
 cd src - npm start
-cd src/api - json-server -p 8088 -w PlanitAPI.json
+run in the top level directory - /run_api.sh
 ```
