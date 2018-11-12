@@ -63,7 +63,9 @@ export default class Login extends Component {
 
             <div className="loadingPageLogin">
                 <form className="form-signin" onSubmit={this.handleLogin}>
+                    {/* <h3 className="title">Welcome to</h3> */}
                     <h1 className="title">PlanIt</h1>
+                    {/* <h1 className="title">PlanIt</h1> */}
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
                     <input onChange={this.handleFieldChange} type="email" id="email" className="form-control" placeholder="Email address" required="" autoFocus="" />
                     <label htmlFor="inputPassword" className="sr-only">Password</label>

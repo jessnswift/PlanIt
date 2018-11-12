@@ -27,8 +27,134 @@
       "lastName": "John",
       "email": "elton@gmail.com",
       "password": "123"
+    },
+    {
+      "firstName": "Val",
+      "lastName": "Val",
+      "email": "val@val.com",
+      "password": "123",
+      "id": 5
     }
   ],
-  "budgets": [],
-  "categories": []
+  "budgets": [
+    {
+      "userId": 3,
+      "budgetName": "Vegas Wedding",
+      "value": "wedding",
+      "budgetAmount": 20000,
+      "id": 1
+    },
+    {
+      "userId": 5,
+      "budgetName": "nashville",
+      "value": "wedding",
+      "budgetAmount": 13000,
+      "id": 2
+    }
+  ],
+  "categories": [
+    {
+      "categoryName": "Ceremony",
+      "percentage": 3,
+      "isEditing": true,
+      "amount": 600,
+      "budget_id": 1,
+      "id": 2
+    },
+    {
+      "categoryName": "Attire",
+      "percentage": 12,
+      "isEditing": false,
+      "amount": 2400,
+      "budget_id": 1,
+      "id": 3
+    },
+    {
+      "categoryName": "Stationery",
+      "percentage": 3,
+      "isEditing": false,
+      "amount": 600,
+      "budget_id": 1,
+      "id": 4
+    },
+    {
+      "categoryName": "Flowers/Decore",
+      "percentage": 12,
+      "isEditing": false,
+      "amount": 2400,
+      "budget_id": 1,
+      "id": 5
+    },
+    {
+      "categoryName": "Planner",
+      "percentage": 8,
+      "isEditing": true,
+      "amount": 1600,
+      "budget_id": 1,
+      "id": 6
+    },
+    {
+      "categoryName": "Photos/Video",
+      "percentage": 12,
+      "isEditing": false,
+      "amount": 2400,
+      "budget_id": 1,
+      "id": 7
+    },
+    {
+      "categoryName": "Mics",
+      "percentage": 5,
+      "isEditing": false,
+      "amount": 1000,
+      "budget_id": 1,
+      "id": 8
+    },
+    {
+      "percentage": 45,
+      "isEditing": true,
+      "amount": "809",
+      "budget_id": 2,
+      "id": 9
+    },
+    {
+      "categoryName": "Ceremony",
+      "percentage": 3,
+      "isEditing": true,
+      "amount": 390,
+      "budget_id": 2,
+      "id": 10
+    },
+    {
+      "categoryName": "Planner",
+      "percentage": 8,
+      "isEditing": true,
+      "amount": 1040,
+      "budget_id": 2,
+      "id": 12
+    },
+    {
+      "categoryName": "Stationery",
+      "percentage": 3,
+      "isEditing": false,
+      "amount": 390,
+      "budget_id": 2,
+      "id": 13
+    },
+    {
+      "categoryName": "Flowers/Decore",
+      "percentage": 12,
+      "isEditing": false,
+      "amount": 1560,
+      "budget_id": 2,
+      "id": 14
+    },
+    {
+      "categoryName": "Photos/Video",
+      "percentage": 12,
+      "isEditing": false,
+      "amount": 1560,
+      "budget_id": 2,
+      "id": 15
+    }
+  ]
 }
