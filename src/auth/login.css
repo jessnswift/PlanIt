@@ -9,7 +9,6 @@ body {
     width: 300px;
     padding: 5px;
     margin: 2px auto;
-
 }
 
 .btn {
@@ -33,7 +32,7 @@ body {
 
 .swal-button, .btn-outline {
     opacity: 0.6;
-    border: 2px solid #de9391;
+    border: 2px solid #EAEAEB;
 }
 
 .form-control {
