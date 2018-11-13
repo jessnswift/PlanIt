@@ -19,7 +19,8 @@ body {
     position: absolute;
     width: 100%;
     background-repeat: no-repeat;
-    background-image: url("../Img/notebookpen.jpg");
+    background-image: url("../Img/money.jpg");
+    opacity: 0.7;
     background-size: cover;
     height: 100%;
 }
@@ -47,4 +48,16 @@ body {
     font-size: 5em;
     text-align: center;
     color: #7b6565;
+}
+
+@media screen and (max-width: 576px) {
+
+    .form-signin, .form-register {
+        margin-top: 32px;
+        margin-left: 0;
+    }
+    .swal-button, .btn-outline {
+        background-color: white;
+    }
+
 }
