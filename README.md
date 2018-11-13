@@ -1,8 +1,8 @@
 # PlanIt
-
-An event planning app dividing your total budget into pre-calculated categories using JSON-server as the backend with React JS for the front, styled with CSS and Bootstrap.
+Have you ever tried to plan a large event, party or vaction only to realize you are feeling overwhelmed with just the budget.\
+Planit takes the ease
 
 ```
 cd src - npm start
-cd src/api - json-server -p 8088 -w PlanitAPI.json
+run in the top level directory - /run_api.sh
 ```
